@@ -1,0 +1,67 @@
+class binary_search:
+    def __init__(self):
+        self.arr=[]
+        self.size=""
+        while not self.size.isdigit():
+            self.size=(input("Enter the Size:"))
+        self.size=int(self.size)
+
+    def display(self):
+        print(self.arr)
+
+    def input(self):
+        for i in range(self.size):
+            x=""
+            while not x.isdigit():
+                x=input("Element-"+str(i+1)+":")
+            self.arr.append(int(x))
+
+    def sort(self):
+            for i in range(len(self.arr)-1):
+                for j in range(0,len(self.arr)-i-1):
+                    if self.arr[j]>self.arr[j+1]:
+                        self.arr[j],self.arr[j+1]=self.arr[j+1],self.arr[j]
+
+    def binarySearch(self):
+        if len(self.arr)==0:
+            print("Array is empty:......Can't apply binary search.")
+            
+        elif self.arr[0]<=self.arr[self.size-1]:
+            u=""
+            while not u.isdigit() and u!="@":
+                u=(input("Enter the value to Search:"))
+            u=int(u)
+            l=0
+            r=len(self.arr)-1
+            while l<=r:
+                m=(l+r)//2
+                if self.arr[m]==u:
+                    print(u,"found at index",m,"position",m+1)
+                    break
+                elif self.arr[m]>u:
+                    r=m-1
+                elif self.arr[m]<u:
+                    l=m+1
+            if(l>r):
+                print("NOT FOUND")
+        else:
+            print("WARNING!.....PLEASE SORT THE ARRAY FIRST")
+
+    def createNewArray(self):
+        self.arr=[]
+
+# _main()_        
+ob=binary_search()
+while(True):
+    a=input("1.Input.\n2.Binary Search.\n3.Display.\n4.Create a new array.\n5. Exit\n")
+    if a=="1":
+        ob.input()
+        ob.sort()
+    elif a=="2":
+        ob.binarySearch()
+    elif a=="3":
+        ob.display()
+    elif a=="4":
+        ob.createNewArray()
+    else:
+        break
